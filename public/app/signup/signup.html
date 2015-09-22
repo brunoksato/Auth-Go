@@ -13,14 +13,8 @@
       </div>
     </div>
 </nav>
-<div ng-show="signin.alertDanger" class="alert alert-danger alert-login" role="alert">
-  Você não preencheu todos os campos.
-</div>
-<div ng-show="signin.alertPassword" class="alert alert-danger alert-login" role="alert">
-  As senhas estão diferentes.
-</div>
 <section class="form">
-  <form name="formUser" novalidate ng-submit="signin.create(formUser.$valid)">
+  <form name="formUser" novalidate ng-submit="signup.create(formUser.$valid)">
 
     <h4 class="form-title">Cadastre suas informações</h4>
 
@@ -34,7 +28,7 @@
     <div class="form-children">
 
       <div class="form-group">
-        <input type="text" name="firstName" class="form-control" placeholder="Nome Completo" ng-model="signin.model.firstName" required>
+        <input type="text" name="firstName" class="form-control" placeholder="Nome Completo" ng-model="signup.model.name" required>
         <div class="error" ng-show="formUser.firstName.$dirty && formUser.firstName.$invalid">
           <small class="error" ng-show="formUser.firstName.$error.required">
               Nome é obrigatório.
@@ -42,7 +36,7 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="email" name="email" class="form-control" placeholder="email@email.com" ng-model="signin.model.email" required>
+        <input type="email" name="email" class="form-control" placeholder="email@email.com" ng-model="signup.model.email" required>
         <div class="error" ng-show="formUser.email.$dirty && formUser.email.$invalid">
           <small class="error" ng-show="formUser.email.$error.required">
               Email é obrigatório.
@@ -53,7 +47,7 @@
         </div>
       </div>
        <div class="form-group">
-        <input type="text" class="form-control col-override" name="login" placeholder="Login" ng-model="signin.model.login" required>
+        <input type="text" class="form-control col-override" name="login" placeholder="Login" ng-model="signup.model.login" required>
         <div class="error" ng-show="formUser.login.$dirty && formUser.login.$invalid">
           <small class="error" ng-show="formUser.login.$error.required">
               Login é obrigatório.
@@ -61,7 +55,7 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control col-override" name="password" placeholder="Senha" ng-model="signin.model.password" required>
+        <input type="password" class="form-control col-override" name="password" placeholder="Senha" ng-model="signup.model.password" required>
         <div class="error" ng-show="formUser.password.$dirty && formUser.password.$invalid">
           <small class="error" ng-show="formUser.password.$error.required">
               Senha é obrigatório.
@@ -69,7 +63,7 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control col-override" name="confirmPassword" placeholder="Confirmar Senha" ng-model="signin.model.confirmPassword" required>
+        <input type="password" class="form-control col-override" name="confirmPassword" placeholder="Confirmar Senha" ng-model="signup.model.confirmPassword" required>
         <div class="error" ng-show="formUser.confirmPassword.$dirty && formUser.confirmPassword.$invalid">
           <small class="error" ng-show="formUser.confirmPassword.$error.required">
               Confirma senha é obrigatório.
@@ -78,10 +72,6 @@
       </div>
       <button type="submit" class="btn btn-new btn-width">Cadastrar</button>
       <p class="lostPassword"><a ui-sref="login">Já possui uma conta?</a></p>
-    </div>
-    <div ng-show="signin.alertSuccess" class="alert alert-success alert-dismissible" role="alert" style="max-width: 450px; margin:auto; margin-top: 20px; text-align: center;">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-      Parabens <br> Confirme seu cadastro atraves do email enviado a você.
     </div>
   </form>
 </section>

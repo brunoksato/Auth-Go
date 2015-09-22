@@ -8,29 +8,27 @@
   function SignupController($scope, $timeout, $state, SignupService) {
     var vm = this;
     vm.model = {};
-    vm.alertDanger = false;
-    vm.alertSuccess = false;
-    vm.alertPassword = false;
 
     vm.create = function(isValid){
+
+        console.log(isValid, 'entro');
 
         if (isValid) {
 
             if(vm.model.password.toLowerCase().trim() !== vm.model.confirmPassword.toLowerCase().trim()){
-                vm.alertPassword = true;
-
-                $timeout(function(){
-                    vm.alertPassword = false;
-                },5000);
-                return;
+                alert('senha iguais');
             }
 
+            var model = angular.copy(vm.model);
+            delete model["confirmPassword"];
+
+            SignupService.register(model).then(function(response){
+                console.log(response);
+            })
+
         } else {
-            vm.alertDanger = true;
-            $timeout(function(){
-                vm.alertDanger = false;
-            },3000);
-        }
+           alert('Erro ao salvar');
+       }
 
     };
 

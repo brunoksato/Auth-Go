@@ -4,7 +4,7 @@
   angular
     .module('app')
     .constant('API', {
-        URL: 'http://localhost:3000/',
+        URL: 'http://localhost:8080/',
     });
 
 })();

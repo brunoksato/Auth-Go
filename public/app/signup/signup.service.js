@@ -12,7 +12,7 @@
 
       var defer = $q.defer();
 
-      $http.post(API.URL + 'register', model).success(function(result){
+      $http.post(API.URL + 'api/register', model).success(function(result){
         defer.resolve(result);
       }).error(function(error){
         defer.reject(error);

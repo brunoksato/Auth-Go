@@ -32,9 +32,9 @@
 
       .state('users', {
         url: '/users',
-        templateUrl: 'app/users/users.html',
-        controller: 'UsersController',
-        controllerAs: 'users'
+        templateUrl: 'app/users/users.html'
+       // controller: 'UsersController',
+        //controllerAs: 'users'
       });
 
     $urlRouterProvider.otherwise('/');

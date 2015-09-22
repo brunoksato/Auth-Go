@@ -1,4 +1,4 @@
-package db
+package main
 
 func init(){
     db, _ := gorm.Open("postgres", "dbname=auth sslmode=disable")
