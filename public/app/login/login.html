@@ -17,7 +17,7 @@
   <form name="formUser" novalidate ng-submit="login.logar(formUser.$valid)">
     <div class="form-children form-children-login">
       <div class="form-group">
-        <input type="text" name="login" class="form-control" placeholder="Login" ng-model="login.model.username" required>
+        <input type="text" name="login" class="form-control" placeholder="Login" ng-model="login.model.login" required>
         <div class="error" ng-show="formUser.login.$dirty && formUser.login.$invalid">
           <small class="error" ng-show="formUser.login.$error.required">
               Login é obrigatório.

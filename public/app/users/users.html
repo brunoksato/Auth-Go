@@ -13,4 +13,21 @@
       </div>
     </div>
 </nav>
-<h1>End Project</h1>
+<div class="container">
+
+  <h1>End Project</h1>
+  <br>
+  <table class="table table-hover">
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Login</th>
+    </tr>
+    <tr ng-repeat="item in users.users">
+      <td>{{::item.name}}</td>
+      <td>{{::item.email}}</td>
+      <td>{{::item.login}}</td>
+    </tr>
+  </table>
+
+</div>

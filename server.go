@@ -1,14 +1,17 @@
 package main
 
 import (
-    _ "github.com/jinzhu/gorm"
+    "github.com/jinzhu/gorm"
     _ "github.com/lib/pq"
-    //"github.com/gocraft/web"
     "github.com/gin-gonic/gin"
-    //"github.com/corneldamian/json-binding"
     _ "fmt"
     "net/http"
     _ "strings"
+)
+
+var (
+    db            gorm.DB
+    sqlConnection string
 )
 
 type User struct {
@@ -18,80 +21,60 @@ type User struct {
     Password string `json:"password"`
 }
 
-// func (c *Context) SetHelloCount(rw web.ResponseWriter, req *web.Request, next web.NextMiddlewareFunc) {
-//     c.User =
-//     next(rw, req)
-// }
-
-// func (c *Context) Authentication(rw web.ResponseWriter, req *web.Request) {
-//     //user := ctx.RequestJSON.(*Authenticate)
-//     //fmt.Println("User " + c.User.Name);
-//     // ctx.ResponseJSON = binding.SuccessResponse("User " + c.User.Name)
-//     //ctx.ResponseStatus = http.StatusUnauthorized
-// }
-
-// // func UsersList(ctx *Context, rw web.ResponseWriter, req *web.Request) {
-
-// // }
-
-// func UserCreate(ctx *Context, rw web.ResponseWriter, req *web.Request) {
-//     user := ctx.RequestJSON.(*User)
-//     ctx.ResponseJSON = binding.SuccessResponse("User " + user.Name)
-// }
-//
-
 func Authentication(c *gin.Context){
     var json User
     if c.BindJSON(&json) == nil {
-        c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-        // if json.User == "manu" && json.Password == "123" {
-        //     c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-        // } else {
-        //     c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-        // }
+        result := db.Where("Login = ? and Password >= ?", json.Login, json.Password).Find(&json)
+        if result.RowsAffected > 0 {
+            c.JSON(http.StatusOK, gin.H{"status": result})
+        } else {
+            c.JSON(http.StatusNotFound, gin.H{"status": result})
+        }
     }
 }
 
 func Register(c *gin.Context){
     var json User
     if c.BindJSON(&json) == nil {
-        c.JSON(http.StatusOK, gin.H{"status": json.Name})
-        // if json.User == "manu" && json.Password == "123" {
-        //     c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-        // } else {
-        //     c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-        // }
+        result := db.Where("Login = ? and Password >= ?", json.Login, json.Password).Find(&json)
+        if result.RowsAffected == 0 {
+            db.NewRecord(json)
+            db.Create(&json)
+            c.JSON(http.StatusOK, gin.H{"status": "Ok"})
+        } else{
+            c.JSON(http.StatusNotFound, gin.H{"status": "Error"})
+        }
+
     }
+}
+
+func UsersList(c *gin.Context){
+    users := []User{}
+    result := db.Find(&users)
+    c.JSON(http.StatusOK, gin.H{"status": result})
 }
 
 
 func main() {
+
+    var err error
+    sqlConnection = "dbname=auth sslmode=disable"
+
+    db, err = gorm.Open("postgres", sqlConnection)
+    db.DB()
+    db.SingularTable(true)
+
+    if err != nil {
+        panic(err)
+        return
+    }
 
     router := gin.Default()
     router.Static("/", "./public")
 
     router.POST("/auth/login", Authentication)
     router.POST("/api/register", Register)
-    router.GET("/api/users", UsersList)
+    router.POST("/api/users", UsersList)
 
     router.Run(":8080")
-    //router := web.New(Context{})
-
-    //static
-//    router.Middleware(web.StaticMiddleware("public"))
-
-    //
-    // router.Middleware(binding.Response(nil))
-    // router.Middleware(binding.Request(Authenticate{}, nil)).Post("/auth/login", Authentication)
-
-    // router.Middleware(binding.Response(nil))
-    // router.Middleware(binding.Request(User{}, nil)).Post("/api/users", UserCreate)
-
-    //user api
-    //router.Post("/auth/login", (*Context).Authentication)
-    //router.Post("/api/users", (*Context).UserCreate)
-    // router.Put("/users/:id", (*Context).UsersUpdate)
-    // router.Delete("/users/:id", (*Context).UsersDelete)
-
-   // http.ListenAndServe("localhost:3000", router)
 }

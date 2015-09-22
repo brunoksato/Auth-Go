@@ -12,7 +12,9 @@
     vm.logar = function(isValid){
         if (isValid) {
           LoginService.login(vm.model).then(function(result){
-            console.log(result);
+            $state.go('users');
+          }, function(){
+            alert('Login ou senha incorretos');
           });
         } else {
           alert('Preencha todos os campos!');

@@ -23,7 +23,9 @@
             delete model["confirmPassword"];
 
             SignupService.register(model).then(function(response){
-                console.log(response);
+              $state.go('users');
+            }, function(){
+              alert('Ocorreu um erro, tente novamente');
             })
 
         } else {

@@ -6,7 +6,8 @@
         'ui.router',
         'app.home',
         'app.login',
-        'app.signup'
+        'app.signup',
+        'app.users'
     ]);
 
 })();
