@@ -1,0 +1,182 @@
+.header-title{
+  color:#fff;
+}
+
+.nav-color {
+  background-color: #292929;
+  padding: 17px;
+  margin-bottom: 0;
+}
+
+.align-right {
+  text-align: right;
+  margin-top: 15px;
+}
+
+.sub-navbar {
+  background-color: #d5d5d5;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.sub-title {
+  margin: 0;
+  line-height: 1.6;
+  color: #4B4B4B;
+  text-align: center;
+  font-weight: 100;
+}
+
+.header-info {
+  color: #9a9a9a;
+}
+
+.header-info i {
+  color: #4B4B4B;
+}
+
+.alert-login {
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.form {
+  padding-top: 55px;
+  max-width: 650px;
+  margin: auto;
+}
+
+.form .form-children {
+  max-width: 400px;
+  margin: auto;
+}
+
+.form-title {
+  font-weight: 100;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.without-image {
+  border: 1px #ccc solid;
+}
+
+.with-image {
+  border: 0px #ccc solid;
+}
+
+.image-signin {
+  float: left;
+  position: absolute;
+  margin-right: 100px;
+}
+
+.image-signin p {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.image-signin p img {
+  border-radius: 50px;
+  border: none;
+}
+
+.image-signin p i {
+  font-size: 80px;
+  margin-left: 18px;
+  margin-top: 5px;
+  color: #7B7B7B;
+}
+
+.image-signin div {
+  margin-left: 30px;
+  cursor: pointer;
+  color: #7B7B7B;
+}
+
+@media (max-width: 768px) {
+  .form {
+    max-width: 280px;
+    padding-top: 0;
+  }
+  .form .form-children {
+    max-width: 280px;
+  }
+  .alert-login {
+    max-width: 280px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  .sub-title {
+    margin: 0;
+    line-height: 2.2;
+    color: #4B4B4B;
+    text-align: center;
+    font-weight: 100;
+    font-size: 23px;
+  }
+}
+
+.col-override {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .image-signin {
+    float: inherit;
+    position: relative;
+    margin-right: 0;
+  }
+  .image-signin p {
+    margin: auto;
+  }
+  .image-signin div {
+    margin-left: 0;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .col-override {
+    width: 100%;
+  }
+}
+
+.btn-width {
+  width: 35%;
+}
+
+.form-control {
+  background-color: #EBEBEB;
+  color: #767676;
+  border-radius: 1px;
+  border: none;
+}
+
+.form-control:focus {
+  border-color: none;
+  outline: 0;
+  box-shadow: inset 0 0.5px 0.5px rgba(0, 0, 0, 0.075), 0 0 8px transparent;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 150px;
+}
+
+.error {
+  color: #bb1f34;
+  font-size: 13px;
+}
+
+.ng-hide-add {
+  animation: 0.5s fadeOut ease-out;
+}
+
+.ng-hide-remove {
+  animation: 0.5s fadeIn ease-in;
+}

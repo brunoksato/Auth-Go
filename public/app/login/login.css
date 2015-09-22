@@ -1,0 +1,21 @@
+
+.lostPassword {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 100;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.footer-login {
+  position: absolute !important;
+}
+
+@media (max-width: 768px) {
+  .form-login {
+    max-width: 280px !important;
+  }
+  .form-login .form-children-login {
+    max-width: 280px !important;
+  }
+}
