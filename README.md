@@ -1,2 +1,4 @@
 # Auth-Go
-Authentication with go, using jwt, pg, gorm, gocraft
+
+* go run migration.go (Create Table)
+* go run server.go (Start)
