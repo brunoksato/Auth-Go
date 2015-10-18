@@ -12,13 +12,14 @@ import (
 var (
     db            gorm.DB
     sqlConnection string
+    err           error
 )
 
 type User struct {
-    Name string `json:"name"`
-    Email string `json:"email"`
-    Login string `json:"login"`
-    Password string `json:"password"`
+    Name     string    `json:"name"`
+    Email    string    `json:"email"`
+    Login    string    `json:"login"`
+    Password string    `json:"password"`
 }
 
 func Authentication(c *gin.Context){
@@ -54,10 +55,7 @@ func UsersList(c *gin.Context){
     c.JSON(http.StatusOK, gin.H{"status": result})
 }
 
-
-func main() {
-
-    var err error
+func connection() {
     sqlConnection = "dbname=auth sslmode=disable"
 
     db, err = gorm.Open("postgres", sqlConnection)
@@ -68,6 +66,11 @@ func main() {
         panic(err)
         return
     }
+}
+
+func main() {
+    //create connection db
+    connection()
 
     router := gin.Default()
     router.Static("/", "./public")
